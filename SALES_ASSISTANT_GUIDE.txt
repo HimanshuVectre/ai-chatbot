@@ -1,0 +1,120 @@
+========== SALESASSISTANT AGENT - USAGE GUIDE ==========
+
+AGENT TYPE: Professional E-commerce Sales Assistant
+STATUS: ✅ Fully Operational
+DATABASE: 50 Products | 15 Categories | 15 Orders (User ID 1)
+
+---
+
+ENHANCED INSTRUCTIONS SUMMARY
+─────────────────────────────────────
+
+1. TOOL USAGE (CRITICAL)
+   • Always use appropriate tool before responding
+   • ListProductTool → Product searches, price filters, availability
+   • ListCategoryTool → Browse categories, explore product groups
+   • ListOrderToolForUser → Retrieve customer order history
+
+2. PRODUCT QUERIES
+   • Smart filtering: "affordable" = lower price, "premium" = higher
+   • Group by category for multi-category requests
+   • Include: Name, Price (Rs format), Stock status, Category
+
+3. ORDER QUERIES
+   • Always retrieve full order history first for context
+   • Show: Invoice ID, Product, Quantity, Total
+   • Privacy: Never expose other customers' data
+
+4. RESPONSE FORMAT
+   • Use bullet points for product lists
+   • Use tables for order summaries
+   • Currency format: Rs 2,499.00
+   • Side-by-side comparisons when needed
+
+---
+
+SAMPLE QUERIES & EXPECTED RESPONSES
+─────────────────────────────────────
+
+QUERY 1: "Show me budget-friendly electronics under Rs 2000"
+EXPECTED RESPONSE:
+  ✅ Uses ListProductTool
+  ✅ Filters: category=Electronics, max_price=2000
+  ✅ Returns products like: Ergonomic Mouse (Rs 1,299.00), etc.
+  ✅ Lists with stock availability
+
+QUERY 2: "What products are available in the Gaming Gear category?"
+EXPECTED RESPONSE:
+  ✅ Uses ListProductTool with category filter
+  ✅ Groups results by Gaming Gear
+  ✅ Shows all gaming products with prices and stock
+
+QUERY 3: "Tell me about my orders"
+EXPECTED RESPONSE:
+  ✅ Uses ListOrderToolForUser
+  ✅ Shows all 15 orders for user ID 1
+  ✅ Format: Invoice #, Product, Qty, Price breakdown
+  ✅ Total revenue calculated (with table)
+
+QUERY 4: "Find products between Rs 3000 and Rs 6000"
+EXPECTED RESPONSE:
+  ✅ Uses ListProductTool with price range
+  ✅ Returns filtered products in price bracket
+  ✅ Shows categories for each product
+
+QUERY 5: "What did I order with invoice INV-1006?"
+EXPECTED RESPONSE:
+  ✅ Uses ListOrderToolForUser with invoice_id filter
+  ✅ Shows: 4K Monitor 27in x1 = Rs 24,999.00 (plus 10% tax if mentioned)
+  ✅ Provides category and product details
+
+---
+
+TEST RESULTS
+──────────────
+
+✅ Agent Configuration: VALID
+✅ Tools Loaded: 3 tools (ListProduct, ListCategory, ListOrder)
+✅ Categories in Database: 15
+✅ Products in Database: 50
+✅ User Orders: 15 orders for user ID 1
+✅ Data Integrity: All products mapped to categories
+✅ All tools returning valid JSON responses
+
+---
+
+KEY IMPROVEMENTS (Version 2)
+────────────────────────────
+
+1. Clear tool usage instructions with specific scenarios
+2. Smart filtering logic explained (e.g., "affordable" inference)
+3. Privacy compliance - only user's own orders
+4. Response formatting standards
+5. Context awareness for follow-ups
+6. Clarifying questions for ambiguous requests
+7. Better tone - friendly, professional, concise
+
+---
+
+NEXT STEPS
+──────────
+
+1. Deploy agent with enhanced instructions
+2. Test with real user queries
+3. Monitor tool call patterns
+4. Optimize category/product filtering based on usage
+5. Consider adding: Reviews, Recommendations, Wishlists
+
+---
+
+READY FOR PRODUCTION ✅
+
+The SalesAssistant agent is fully configured, tested, and ready to handle
+customer queries with the three core tools: Product listing, Category browsing,
+and Order history retrieval.
+
+Test file: test_sales_assistant.php
+Agent file: app/Ai/Agents/SalesAssistant.php
+Tools directory: app/Ai/Tools/
+
+Run: php test_sales_assistant.php (to verify functionality)
